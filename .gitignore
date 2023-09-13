@@ -1,0 +1,17 @@
+
+### C++ ###
+# Prerequisites
+*.d
+*.o
+*.obj
+*.lib
+*.out
+*.jpg
+*.db
+*.tsv
+*.gz
+*.bmp
+*.zip
+
+
+

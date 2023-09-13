@@ -1,0 +1,126 @@
+#include<iostream>
+#include <iterator>
+#include <string>
+#include <utility>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+class Queue{
+    private:
+        vector<char> q;
+        int rear;
+        int front;
+        int size;
+
+    public:
+        Queue() {
+            q = {};
+            rear = -1;
+            front = 0;
+            size = 0;
+        }
+
+        void enqueue(char node) {
+            q.push_back(node);
+            rear++;
+            size++;
+        }
+
+        char dequeue() {
+            if(size == 0) {
+                return '0';
+            }
+
+            char result = q[front];
+            front++;
+            size--;
+            return result;
+        }
+
+        bool is_empty() {
+            if(size == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        int length() {
+            return size;
+        }
+};
+
+vector<char> bfs(vector<vector<int>> adj_matrix, vector<char> vertices, map<char, int> vertex_index) {
+    Queue nodes = Queue();
+    map<char, bool> visited;
+    vector<char> ouput_vector;
+
+    nodes.enqueue(vertices[0]);
+    visited[vertices[0]] = true;
+
+    while(!nodes.is_empty()) {
+        char node = nodes.dequeue();
+        ouput_vector.push_back(node);
+
+        vector<int> matrix_elmnt = adj_matrix[vertex_index[node]];
+
+        for(int i = 0; i < matrix_elmnt.size(); i++) {
+            if(matrix_elmnt[i] == 1) {
+                if(visited.find(vertices[i]) == visited.end()) {
+                    nodes.enqueue(vertices[i]);
+                    visited[vertices[i]] = true;
+                }
+            }
+        }
+    }
+
+
+    return ouput_vector;
+}
+
+
+
+void print_vector(vector<char> input) {
+
+    cout << "{";
+    if(input.empty()) {
+
+        cout << "}" << endl;
+        return;
+
+    }
+
+    for(int i = 0; i < input.size(); i++) {
+        cout << input[i] << ", ";
+    }
+
+    cout << "}" << endl;
+}
+
+
+
+int main(void) {
+
+    vector<vector<int>> adj_matrix = {{0, 1, 0, 0, 0, 1},
+                                        {1, 0, 1, 0, 0, 1},
+                                        {0, 1, 0, 1, 1, 0},
+                                        {0, 0, 1, 0, 1, 0},
+                                        {0, 0, 1, 1, 0, 1}, 
+                                        {1, 1, 0, 0, 1, 0}};
+
+    vector<char> vertices = {'a', 'b', 'c', 'd', 'e', 'f'};
+    map<char, int> vertex_index;
+    vertex_index['a'] = 0; 
+    vertex_index['b'] = 1; 
+    vertex_index['c'] = 2; 
+    vertex_index['d'] = 3; 
+    vertex_index['e'] = 4; 
+    vertex_index['f'] = 5; 
+
+    vector<char> result = bfs(adj_matrix, vertices, vertex_index);
+    print_vector(result);
+    return 0;
+}

@@ -18,38 +18,24 @@ void print_vector(vector<int> input) {
 }
 
 int removeElement(vector<int>& nums, int val) {
-    int count;
-
-    int length = 0;
+    int count = 0;
     int i = 0;
     int j = 0;
 
     while(i < nums.size()) {
-        cout << "i: " << i << " j: " << j << "\tnums[i]: " << nums[i] << "\tnums[j]: " << nums[j] << endl;
-        if(nums[i] == val) {
-            while(nums[j] == val && j < nums.size() - 1) {
-                j++;
-            }
-            cout << "Found the nums[j] "<< j << " which is not equal to value: "<< nums[j] << " nums[i] " << nums[i] << endl;
-
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
-            i++;
-            j = i;
-
-        }
-        else {
+        if(nums[i] != val) {
+            nums[j] = nums[i];
+            j++;
             count++;
-            i++;
-            j = i;
         }
-        
+        i++;
+
+       
     }
-    cout << "count: \t" <<  nums.size() - (count + 1) << endl;
+
+    cout << "nums.size() : " << nums.size() << endl;
     print_vector(nums);
-
-
+    cout << count << endl;
     return count;
 }
 

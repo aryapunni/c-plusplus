@@ -1,3 +1,11 @@
+//Leet code question 205
+//Given two strings s and t, determine if they are isomorphic.
+//Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+//All occurrences of a character must be replaced with another character while preserving 
+//the order of characters. No two characters may map to the same character, 
+//but a character may map to itself.
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,6 +49,43 @@ void print_map(map<char, char> test) {
 
 
 
+bool isIsomorphic(string s, string t) {
+
+        map<char, char>key_map;
+        map<char, char>val_map;
+
+        if(s.length() != t.length()) {
+            return false;
+        }
+        else {
+            for(int i = 0; i < s.length(); i++) {
+                if(key_map.find(s[i]) == key_map.end()) {
+
+                    if(val_map.find(t[i]) == val_map.end()) {
+
+                        key_map[s[i]] = t[i];
+                        val_map[t[i]] = s[i];
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else {
+                    if(val_map.find(t[i]) == val_map.end()) {
+                        return false;
+                    }
+                    else if(val_map[t[i]] == s[i] && key_map[s[i]] == t[i]) {
+                        cout << t[i] << "  " << s[i] << endl;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return true;
+        
+    }
+
 bool isomorphic(Input input) {
 
     std::map<char, char> key_map;
@@ -78,8 +123,8 @@ bool isomorphic(Input input) {
 
             
         }
-        // print_map(key_map);
-        // print_map(val_map);
+        print_map(key_map);
+        print_map(val_map);
 
         
     }
@@ -90,7 +135,7 @@ bool isomorphic(Input input) {
 
 int main(void) {
 
-    Input input_1 = Input("ababr", "eoeoo");
+    Input input_1 = Input("aaeaa", "uuxyy");
     Input input_2 = Input("ababr", "pqrqo");
     Input input_3 = Input("green", "abccd");
     Input input_4 = Input("egg", "add");
@@ -116,6 +161,8 @@ int main(void) {
         }
 
     }
+
+    cout << isIsomorphic("aaeaa", "uuxyy") << endl;
 
         
 

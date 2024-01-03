@@ -8,6 +8,23 @@
 
 using namespace std;
 
+
+
+void print_vector(vector<int> input) {
+    if(input.empty()) {
+        cout << "{}";
+    }
+    else {
+        cout << "{\t";
+        for(int i = 0; i < input.size(); i++) {
+             cout << input[i] << "\t";
+        }
+        cout << "}\n";
+    }
+}
+
+
+
 int binary_search(int target, vector<int> &nums) {
 
     int start = 0;
@@ -20,7 +37,6 @@ int binary_search(int target, vector<int> &nums) {
     while(start <= end) {
 
         mid = (end + start)/2;
-        cout << start << " " << end << " " << mid << endl;
         if(nums[mid] == target) {
             return mid;
         }
@@ -33,13 +49,15 @@ int binary_search(int target, vector<int> &nums) {
             end = mid - 1;
 
         }
-        else {
-            return mid;
-        }
+        
+    }
+
+    if(nums[mid] < target) {
+        return mid + 1;
     }
 
 
-    // return 1;
+    return mid;
 
 }
 
@@ -47,20 +65,32 @@ int searchInsert(vector<int>& nums, int target) {
 
     int index = binary_search(target, nums);
 
-    cout << "index: " << index << endl;
+    if(nums[index] == target) {
+        return index;
+    }
+    else {
 
-    return 1;
+        nums.insert(nums.begin() + index, target);
+        return index;
+    }
+
+
+    return index;
 
 
 }
 
 int main(void) {
 
-    vector<int> numbers = {1, 2, 3, 4, 6};
+    vector<int> numbers = {1, 3, 5, 8, 12};
 
-    int target = 1;
+    for(int target = -1; target <= 15; target++) {
 
-    searchInsert(numbers, target);
+        searchInsert(numbers, target);
+        print_vector(numbers);
+    }
+
+
 
     return 0;
 }

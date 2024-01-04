@@ -19,6 +19,8 @@ class Solution {
 public:
 
     Solution() {
+
+
         
     }
 
@@ -47,12 +49,13 @@ public:
             if(isBadVersion(mid) == true) {
 
                 end = mid + 1;
+                badVersion = mid;
 
             }
             else {
                 start = mid - 1;
             }
-            badVersion = mid;
+            
 
             cout << badVersion << endl;
 

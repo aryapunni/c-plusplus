@@ -15,18 +15,11 @@
 
 using namespace std;
 
-class Solution {
-public:
 
-    Solution() {
-
-
-        
-    }
 
     bool isBadVersion (int version) {
 
-        if(version > 5) {
+        if(version > 0) {
             return true;
         }
         else {
@@ -46,14 +39,15 @@ public:
         while(start <= end) {
 
             mid = (start + end)/2;
+            cout << mid << endl;
             if(isBadVersion(mid) == true) {
 
-                end = mid + 1;
+                end = mid - 1;
                 badVersion = mid;
 
             }
             else {
-                start = mid - 1;
+                start = mid + 1;
             }
             
 
@@ -62,18 +56,24 @@ public:
 
         }
 
+        if(isBadVersion(badVersion) == true) {
+
+            return badVersion;
+
+        }
+        else {
+            return badVersion + 1;
+        }
+
         
-        return badVersion;
     }
 
     
-};
 
 int main(void) {
 
-    Solution sol = Solution();
-
-    int badVersion = sol.isBadVersion(8);
+    
+    int badVersion = firstBadVersion(8);
 
     cout << "badVersion = " << badVersion << endl;
 

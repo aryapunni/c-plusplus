@@ -115,11 +115,9 @@ class TestCase {
 };
 
 
-int binarySearchRecursion(int targetValue, vector<int> input, int startIndex, int endIndex, int check) {
+int binarySearchRecursion(int targetValue, vector<int> input, int startIndex, int endIndex) {
 
     int middle = 0;
-    check++;
-    cout << "check\t" << check << endl;
 
     if(startIndex > endIndex) {
 
@@ -146,7 +144,7 @@ int binarySearchRecursion(int targetValue, vector<int> input, int startIndex, in
                 startIndex = middle + 1;
                 cout << "start Index changed from " << startIndex_prev << " to " << startIndex << endl;
                 cout << "end index is: " << endIndex << endl;
-                return binarySearchRecursion(targetValue, input, startIndex, endIndex, check);
+                return binarySearchRecursion(targetValue, input, startIndex, endIndex);
             }
             else {
 
@@ -155,7 +153,7 @@ int binarySearchRecursion(int targetValue, vector<int> input, int startIndex, in
                 endIndex = middle - 1;
                 cout << "end index changed from " << endIndex_prev << " to " << endIndex << endl;
                 cout << "start index is: " << startIndex << endl;
-                return binarySearchRecursion(targetValue, input, startIndex, endIndex, check);
+                return binarySearchRecursion(targetValue, input, startIndex, endIndex);
             }
         }
 
@@ -166,11 +164,9 @@ int binarySearchRecursion(int targetValue, vector<int> input, int startIndex, in
 
 
 
-int binarySearchTest(int targetValue, vector<int> input, int startIndex, int endIndex, int check) {
+int binarySearchTest(int targetValue, vector<int> input, int startIndex, int endIndex) {
 
     int middle = 0;
-    check++;
-    cout << "check\t" << check << endl;
 
     middle = startIndex + (endIndex - startIndex)/2;
 
@@ -190,7 +186,7 @@ int binarySearchTest(int targetValue, vector<int> input, int startIndex, int end
             startIndex = middle + 1;
             cout << "start Index changed from " << startIndex_prev << " to " << startIndex << endl;
             cout << "end index is: " << endIndex << endl;
-            return binarySearchRecursion(targetValue, input, startIndex, endIndex, check);
+            return binarySearchRecursion(targetValue, input, startIndex, endIndex);
         }
         else {
 
@@ -199,7 +195,7 @@ int binarySearchTest(int targetValue, vector<int> input, int startIndex, int end
             endIndex = middle - 1;
             cout << "end index changed from " << endIndex_prev << " to " << endIndex << endl;
             cout << "start index is: " << startIndex << endl;
-            return binarySearchRecursion(targetValue, input, startIndex, endIndex, check);
+            return binarySearchRecursion(targetValue, input, startIndex, endIndex);
         }
     }
 
@@ -243,7 +239,7 @@ int main(void) {
 
     vector<int> input = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    int result = binarySearchTest(-2, input, 0, input.size() - 1, 0);
+    int result = binarySearchRecursion(-2, input, 0, input.size() - 1);
 
     cout << endl << "------------------------------------------" << endl;
     cout << "result\t" << result << endl;

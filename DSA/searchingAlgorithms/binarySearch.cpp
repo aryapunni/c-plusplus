@@ -121,85 +121,31 @@ int binarySearchRecursion(int targetValue, vector<int> input, int startIndex, in
 
     if(startIndex > endIndex) {
 
-        cout << "start index: \t" << startIndex << "\tend index\t" << endIndex << "\tmiddle\t" << middle << endl;
         return -1;
     }
     else if (startIndex <= endIndex) {
 
-        middle = startIndex + (endIndex - startIndex)/2;
-
-        cout << "start index: \t" << startIndex << "\tend index\t" << endIndex << "\tmiddle\t" << middle << endl;
+        middle = (endIndex + startIndex)/2;
 
         if(input[middle] == targetValue) {
-
-            cout << "Found the value\t" << "input[" << middle << "] = " << input[middle] << endl;
 
             return middle;
         }   
         else {
             if(input[middle] < targetValue) {
 
-                cout << "Target value is greater than middle value" << endl;
-                int startIndex_prev = startIndex;
                 startIndex = middle + 1;
-                cout << "start Index changed from " << startIndex_prev << " to " << startIndex << endl;
-                cout << "end index is: " << endIndex << endl;
                 return binarySearchRecursion(targetValue, input, startIndex, endIndex);
             }
             else {
 
-                cout << "Target value is lesser than middle value" << endl;
-                int endIndex_prev = endIndex;
                 endIndex = middle - 1;
-                cout << "end index changed from " << endIndex_prev << " to " << endIndex << endl;
-                cout << "start index is: " << startIndex << endl;
                 return binarySearchRecursion(targetValue, input, startIndex, endIndex);
             }
         }
 
     }
    return -1;
-
-}
-
-
-
-int binarySearchTest(int targetValue, vector<int> input, int startIndex, int endIndex) {
-
-    int middle = 0;
-
-    middle = startIndex + (endIndex - startIndex)/2;
-
-    cout << "start index: \t" << startIndex << "\tend index\t" << endIndex << "\tmiddle\t" << middle << endl;
-
-    if(input[middle] == targetValue) {
-
-        cout << "Found the value\t" << "input[" << middle << "] = " << input[middle] << endl;
-
-        return middle;
-    }   
-    else {
-        if(input[middle] < targetValue) {
-
-            cout << "Target value is greater than middle value" << endl;
-            int startIndex_prev = startIndex;
-            startIndex = middle + 1;
-            cout << "start Index changed from " << startIndex_prev << " to " << startIndex << endl;
-            cout << "end index is: " << endIndex << endl;
-            return binarySearchRecursion(targetValue, input, startIndex, endIndex);
-        }
-        else {
-
-            cout << "Target value is lesser than middle value" << endl;
-            int endIndex_prev = endIndex;
-            endIndex = middle - 1;
-            cout << "end index changed from " << endIndex_prev << " to " << endIndex << endl;
-            cout << "start index is: " << startIndex << endl;
-            return binarySearchRecursion(targetValue, input, startIndex, endIndex);
-        }
-    }
-
-    return -1;
 
 }
 

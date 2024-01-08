@@ -28,7 +28,6 @@ class slidingWindow{
             double windowSum = 0;
             double start = 0;
             int k = 0;
-            int i = 0;
 
             for(int windowEnd = 0; windowEnd < input.size(); windowEnd++) {
 
@@ -41,12 +40,12 @@ class slidingWindow{
 
                     cout << "windowSum: " << windowSum << " k: " << k << endl;
                     k--;
-                    averageVector.insert(averageVector.begin() + i, windowSum/size);
+                    averageVector.push_back(windowSum/size);
 
                     cout << "windowSum/size: " << windowSum/size << endl;
                     windowSum = windowSum - input[start];
 
-                    cout << "windowSum after minusing: " << windowSum << endl;
+                    cout << "windowSum after subtracting start value: " << windowSum << endl;
                     start++;
                 }
 

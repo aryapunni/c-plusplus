@@ -28,23 +28,39 @@ int minSubArray(vector<int> input, int k) {
     int slide = 0;
     vector<int> resultWindow;
     int windowLength = 0;
+    int result = 0;
 
     int windowSum = 0;
 
     for(endWindow = 0; endWindow < input.size(); endWindow++) {
+
+        if(input[endWindow] >= k) {
+            result = 1;
+            return result;
+        }
 
         windowSum += input[endWindow];
         windowLength++;
 
         if(windowSum >= k) {
 
-            for(int i = startWindow; i <= endWindow; i++) {
-                resultWindow.push_back(input[i]);
+            if(result > windowLength) {
+                result = windowLength;
             }
 
+            resultWindow.clear();
+
+            for(int i = startWindow; i <= endWindow; i++) {
+
+                resultWindow.push_back(input[i]);
+
+            }
+
+           
         }
 
     }
+    return result;
 }
 
 

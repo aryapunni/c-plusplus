@@ -53,7 +53,6 @@ int minSubArray(vector<int> input, int k) {
 
         if(windowSum >= k) {
 
-
             cout << "windowSum is greater than k: " << windowSum << " windowLength: " << windowLength << endl;
             windowSum = windowSum - input[startWindow];
             startWindow++;

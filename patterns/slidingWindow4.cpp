@@ -29,12 +29,13 @@ int minSubArray(vector<int> input, int k) {
     vector<int> resultWindow;
     int windowLength = 0;
     int result = input.size();
+    cout << result << endl;
 
     int windowSum = 0;
 
     for(endWindow = 0; endWindow < input.size(); endWindow++) {
 
-        cout << "INPUT IS: " << input[endWindow]  << endl;
+        cout << result << " INPUT IS: " << input[endWindow]  << endl;
 
         if(input[endWindow] >= k) {
             result = 1;
@@ -59,12 +60,13 @@ int minSubArray(vector<int> input, int k) {
             windowLength--;
             cout << "windowSum after slide: " << windowSum << " windowLength: " << windowLength << endl;
 
+            if(result > windowLength) {
+                result = windowLength;
+            }
+ 
         }
 
-        if(result > windowLength) {
-            result = windowLength;
-        }
-        cout << "result: " << result << endl;
+       cout << "result: " << result << endl;
 
 
     }

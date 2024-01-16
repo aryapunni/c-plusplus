@@ -28,36 +28,44 @@ int minSubArray(vector<int> input, int k) {
     int slide = 0;
     vector<int> resultWindow;
     int windowLength = 0;
-    int result = 0;
+    int result = input.size();
 
     int windowSum = 0;
 
     for(endWindow = 0; endWindow < input.size(); endWindow++) {
+
+        cout << "INPUT IS: " << input[endWindow]  << endl;
 
         if(input[endWindow] >= k) {
             result = 1;
             return result;
         }
 
-        windowSum += input[endWindow];
-        windowLength++;
+        if(windowSum < k) {
+            
+
+            windowSum += input[endWindow];
+            windowLength++;
+            cout << "windowSum: " << windowSum << " windowLength: " << windowLength << endl;
+
+        }
 
         if(windowSum >= k) {
 
-            if(result > windowLength) {
-                result = windowLength;
-            }
 
-            resultWindow.clear();
+            cout << "windowSum is greater than k: " << windowSum << " windowLength: " << windowLength << endl;
+            windowSum = windowSum - input[startWindow];
+            startWindow++;
+            windowLength--;
+            cout << "windowSum after slide: " << windowSum << " windowLength: " << windowLength << endl;
 
-            for(int i = startWindow; i <= endWindow; i++) {
-
-                resultWindow.push_back(input[i]);
-
-            }
-
-           
         }
+
+        if(result > windowLength) {
+            result = windowLength;
+        }
+        cout << "result: " << result << endl;
+
 
     }
     return result;
@@ -65,6 +73,14 @@ int minSubArray(vector<int> input, int k) {
 
 
 int main(void) {
+
+    vector<int> input = {1, 2, 3, 5, 2};
+
+    int result = minSubArray(input, 8);
+
+    cout << "result: " << result << endl;
+
+
 
     return 0;
 }

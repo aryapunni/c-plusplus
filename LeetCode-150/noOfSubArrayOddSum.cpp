@@ -17,7 +17,7 @@ int numOfSubArrays(vector<int>& arr) {
 
     for (int num : arr) {
 
-        even += 1;
+        // even += 1;
 
         if(num % 2) {
             swap(odd, even);
@@ -25,13 +25,16 @@ int numOfSubArrays(vector<int>& arr) {
  
             
         }
+        else {
+            even += 1;
+        }
         
+        result = (result + odd)%10000000007;
     
     }
 
-    result = result + odd;
 
-    cout << "odd: " << odd%modulo << " result " << result << endl;
+    cout << "odd: " << odd << " result " << result << endl;
 
     return result;
 
